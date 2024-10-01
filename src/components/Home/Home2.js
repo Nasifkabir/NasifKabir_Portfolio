@@ -4,7 +4,8 @@ import myImg from "../../Assets/img.png";
 import {
   AiFillGithub,
 } from "react-icons/ai";
-import { FaLinkedinIn } from "react-icons/fa";
+import { FaFacebook, FaLinkedinIn } from "react-icons/fa";
+
 
 function Home2() {
   return (
@@ -58,6 +59,16 @@ function Home2() {
               Feel free to <span className="purple">connect </span>with me
             </p>
             <ul className="home-about-social-links">
+            <li className="social-icons">
+                <a
+                  href="https://www.facebook.com/share/F5ekpwEzwfL3bBXG/?mibextid=LQQJ4d"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="icon-colour  home-social-icons"
+                >
+                  <FaFacebook />
+                </a>
+              </li>
               <li className="social-icons">
                 <a
                   href="https://github.com/Nasifkabir"
@@ -78,6 +89,7 @@ function Home2() {
                   <FaLinkedinIn />
                 </a>
               </li>
+              
             </ul>
           </Col>
         </Row>
