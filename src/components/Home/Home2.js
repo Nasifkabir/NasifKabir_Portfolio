@@ -17,36 +17,40 @@ function Home2() {
               LET ME <span className="purple"> INTRODUCE </span> MYSELF
             </h1>
             <p className="home-about-body">
-              I'm a CSE graduate from Varendra University, skilled in front-end web development 
-              <br />
-              <br />I am proficeint in
-              <i>
-                <b className="purple"> HTML, CSS, Tailwind, Javascript and ReactJs. </b>
-              </i>
-              <br />
-              <br />
-              I'm passionate about&nbsp;
-              <i>
-                <b className="purple">web technologies, software development </b> and
-                and various aspects of{" "}
-                <b className="purple">
-                  Software Engineering.
-                </b>
-              </i>
-              <br />
-              <br />
-              Whenever possible, I create projects and continuously learn new things in the tech industry, focusing on <b className="purple">Node.js</b> and
-              <i>
-                <b className="purple">
-                  {" "}
-                  Modern Javascript Library and Frameworks
-                </b>
-              </i>
-              &nbsp; like
-              <i>
-                <b className="purple"> React.js and Next.js</b>
-              </i>
-            </p>
+            Currently, I am working as a <b className="purple">Technical Support Engineer</b> at <b className="purple">Innovate Solutions</b>, where I leverage my technical expertise to assist clients with customized travel technology solutions.
+            <br />
+            <br />
+            I'm a CSE graduate from Varendra University, skilled in front-end web development 
+            <br />
+            <br />I am proficient in
+            <i>
+              <b className="purple"> HTML, CSS, Tailwind, Javascript, and ReactJs. </b>
+            </i>
+            <br />
+            <br />
+            I'm passionate about&nbsp;
+            <i>
+              <b className="purple">web technologies, software development </b> and
+              various aspects of{" "}
+              <b className="purple">
+                Software Engineering.
+              </b>
+            </i>
+            <br />
+            <br />
+            Whenever possible, I create projects and continuously learn new things in the tech industry, focusing on <b className="purple">Node.js</b> and
+            <i>
+              <b className="purple">
+                {" "}
+                Modern Javascript Libraries and Frameworks
+              </b>
+            </i>
+            &nbsp; like
+            <i>
+              <b className="purple"> React.js and Next.js</b>
+            </i>
+          </p>
+
           </Col>
           <Col md={4} className="myAvtar">
             <img src={myImg} className="img-fluid rounded-circle" alt="avatar" />
