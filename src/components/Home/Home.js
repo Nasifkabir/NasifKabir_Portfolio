@@ -13,6 +13,13 @@ function Home() {
         <Container className="home-content">
           <Row>
             <Col md={7} className="home-header">
+              <div className="status-badge-container">
+                <span className="status-pill">
+                  <span className="pulse-dot"></span>
+                  Technical Support Engineer @ Innovate Solution
+                </span>
+              </div>
+
               <h1 style={{ paddingBottom: 15 }} className="heading">
                 Hi There!{" "}
                 <span className="wave" role="img" aria-labelledby="wave">
@@ -25,7 +32,7 @@ function Home() {
                 <strong className="main-name"> NASIF KABIR</strong>
               </h1>
 
-              <div style={{ padding: 50, textAlign: "left" }}>
+              <div style={{ padding: 40, textAlign: "left" }}>
                 <Type />
               </div>
             </Col>
@@ -40,6 +47,29 @@ function Home() {
             </Col>
           </Row>
         </Container>
+      </Container>
+
+      <Container className="metrics-section">
+        <div className="metrics-container">
+          <Row>
+            <Col xs={6} md={3} className="metric-item">
+              <div className="metric-value">2+</div>
+              <div className="metric-label">Years in Tech</div>
+            </Col>
+            <Col xs={6} md={3} className="metric-item">
+              <div className="metric-value">40+</div>
+              <div className="metric-label">Markets Supported</div>
+            </Col>
+            <Col xs={6} md={3} className="metric-item">
+              <div className="metric-value">29+</div>
+              <div className="metric-label">GitHub Repos</div>
+            </Col>
+            <Col xs={6} md={3} className="metric-item">
+              <div className="metric-value">99.5%</div>
+              <div className="metric-label">Resolution SLA</div>
+            </Col>
+          </Row>
+        </div>
       </Container>
       <Home2 />
     </section>

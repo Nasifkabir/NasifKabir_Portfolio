@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Particle from "../Particle";
-import pdf from "../../Assets/../Assets/NASIF KABIR RESUME.pdf";
+import pdf from "../../Assets/NASIF KABIR RESUME.pdf";
 import { AiOutlineDownload } from "react-icons/ai";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
@@ -13,41 +13,53 @@ function ResumeNew() {
 
   useEffect(() => {
     setWidth(window.innerWidth);
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <div>
       <Container fluid className="resume-section">
         <Particle />
-        <Row style={{ justifyContent: "center", position: "relative" }}>
-          <Button
-            variant="primary"
-            href={pdf}
-            target="_blank"
-            style={{ maxWidth: "250px" }}
-          >
-            <AiOutlineDownload />
-            &nbsp;Download CV
-          </Button>
-        </Row>
+        <Container>
+          <h1 className="experience-heading">
+            Curriculum <strong className="purple">Vitae</strong>
+          </h1>
+          <p className="section-subtext">
+            View or download my verified resume outlining my education, technical support background, and engineering skillset.
+          </p>
 
-        <Row className="resume">
-          <Document file={pdf} className="d-flex justify-content-center">
-            <Page pageNumber={1} scale={width > 786 ? 1.7 : 0.6} />
-          </Document>
-        </Row>
+          <Row style={{ justifyContent: "center", position: "relative", marginBottom: "20px" }}>
+            <Button
+              variant="primary"
+              href={pdf}
+              target="_blank"
+              style={{ maxWidth: "250px", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px" }}
+            >
+              <AiOutlineDownload style={{ fontSize: "1.2rem" }} />
+              Download CV (PDF)
+            </Button>
+          </Row>
 
-        <Row style={{ justifyContent: "center", position: "relative" }}>
-          <Button
-            variant="primary"
-            href={pdf}
-            target="_blank"
-            style={{ maxWidth: "250px" }}
-          >
-            <AiOutlineDownload />
-            &nbsp;Download CV
-          </Button>
-        </Row>
+          <Row className="resume">
+            <Document file={pdf} className="d-flex justify-content-center">
+              <Page pageNumber={1} scale={width > 786 ? 1.7 : 0.6} />
+            </Document>
+          </Row>
+
+          <Row style={{ justifyContent: "center", position: "relative", marginTop: "20px" }}>
+            <Button
+              variant="primary"
+              href={pdf}
+              target="_blank"
+              style={{ maxWidth: "250px", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px" }}
+            >
+              <AiOutlineDownload style={{ fontSize: "1.2rem" }} />
+              Download CV (PDF)
+            </Button>
+          </Row>
+        </Container>
       </Container>
     </div>
   );

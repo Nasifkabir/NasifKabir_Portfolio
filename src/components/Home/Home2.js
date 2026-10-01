@@ -17,43 +17,28 @@ function Home2() {
               LET ME <span className="purple"> INTRODUCE </span> MYSELF
             </h1>
             <p className="home-about-body">
-            Currently, I am working as a <b className="purple">Technical Support Engineer</b> at <b className="purple">Innovate Solutions</b>, where I leverage my technical expertise to assist clients with customized travel technology solutions.
-            <br />
-            <br />
-            I'm a CSE graduate from Varendra University, skilled in front-end web development 
-            <br />
-            <br />I am proficient in
-            <i>
-              <b className="purple"> HTML, CSS, Tailwind, Javascript, and ReactJs. </b>
-            </i>
-            <br />
-            <br />
-            I'm passionate about&nbsp;
-            <i>
-              <b className="purple">web technologies, software development </b> and
-              various aspects of{" "}
-              <b className="purple">
-                Software Engineering.
-              </b>
-            </i>
-            <br />
-            <br />
-            Whenever possible, I create projects and continuously learn new things in the tech industry, focusing on <b className="purple">Node.js</b> and
-            <i>
-              <b className="purple">
-                {" "}
-                Modern Javascript Libraries and Frameworks
-              </b>
-            </i>
-            &nbsp; like
-            <i>
-              <b className="purple"> React.js and Next.js</b>
-            </i>
-          </p>
-
+              Currently, I am working as a <b className="purple">Technical Support Engineer</b> in 
+              <b className="purple"> Service Delivery & Operations</b> at <b className="purple">Innovate Solution</b>, 
+              where I ensure high availability and provide expert API consultancy for global B2B travel technology platforms.
+              <br />
+              <br />
+              I hold a B.Sc. in Computer Science & Engineering from <b className="purple">Varendra University</b>, 
+              with strong expertise in modern frontend and web application development.
+              <br />
+              <br />
+              My core toolkit includes
+              <i>
+                <b className="purple"> TypeScript, JavaScript (ES6+), React.js, Next.js, REST APIs, and Tailwind CSS.</b>
+              </i>
+              <br />
+              <br />
+              I specialize in bridging technical support with software development — diagnosing live system issues, optimizing API integrations, and building fast, responsive, and user-centric web applications.
+            </p>
           </Col>
           <Col md={4} className="myAvtar">
-            <img src={myImg} className="img-fluid rounded-circle" alt="avatar" />
+            <div className="avatar-frame">
+              <img src={myImg} className="img-fluid rounded-circle" alt="Nasif Kabir" />
+            </div>
           </Col>
         </Row>
         <Row>
@@ -63,12 +48,13 @@ function Home2() {
               Feel free to <span className="purple">connect </span>with me
             </p>
             <ul className="home-about-social-links">
-            <li className="social-icons">
+              <li className="social-icons">
                 <a
                   href="https://www.facebook.com/share/F5ekpwEzwfL3bBXG/?mibextid=LQQJ4d"
                   target="_blank"
                   rel="noreferrer"
-                  className="icon-colour  home-social-icons"
+                  className="icon-colour home-social-icons"
+                  title="Facebook"
                 >
                   <FaFacebook />
                 </a>
@@ -78,22 +64,23 @@ function Home2() {
                   href="https://github.com/Nasifkabir"
                   target="_blank"
                   rel="noreferrer"
-                  className="icon-colour  home-social-icons"
+                  className="icon-colour home-social-icons"
+                  title="GitHub"
                 >
                   <AiFillGithub />
                 </a>
               </li>
               <li className="social-icons">
                 <a
-                  href="www.linkedin.com/in/nasifkabir34"
+                  href="https://www.linkedin.com/in/nasifkabir34/"
                   target="_blank"
                   rel="noreferrer"
-                  className="icon-colour  home-social-icons"
+                  className="icon-colour home-social-icons"
+                  title="LinkedIn"
                 >
                   <FaLinkedinIn />
                 </a>
               </li>
-              
             </ul>
           </Col>
         </Row>
