@@ -1,143 +1,86 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Container from "react-bootstrap/Container";
-import logo from "../Assets/logo.png";
-import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
-import { CgGitFork, CgFileDocument } from "react-icons/cg";
-import {
-  AiFillStar,
-  AiOutlineHome,
-  AiOutlineFundProjectionScreen,
-  AiOutlineUser,
-} from "react-icons/ai";
-import { FaBriefcase, FaGraduationCap, FaComments } from "react-icons/fa";
+import { ArrowIcon } from "./Icons";
+import { HiMenu, HiX } from "react-icons/hi";
 
-function NavBar() {
-  const [expand, updateExpanded] = useState(false);
-  const [navColour, updateNavbar] = useState(false);
+function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    function scrollHandler() {
-      if (window.scrollY >= 20) {
-        updateNavbar(true);
+    const handleScroll = () => {
+      if (window.scrollY > 40) {
+        setScrolled(true);
       } else {
-        updateNavbar(false);
+        setScrolled(false);
       }
-    }
-
-    window.addEventListener("scroll", scrollHandler);
-    return () => window.removeEventListener("scroll", scrollHandler);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const closeMobile = () => setMobileOpen(false);
+
   return (
-    <Navbar
-      expanded={expand}
-      fixed="top"
-      expand="md"
-      className={navColour ? "sticky" : "navbar"}
-    >
-      <Container>
-        <Navbar.Brand href="/" className="d-flex align-items-center">
-          <img src={logo} className="img-fluid logo" alt="Nasif Kabir" />
-        </Navbar.Brand>
-        <Navbar.Toggle
-          aria-controls="responsive-navbar-nav"
-          onClick={() => {
-            updateExpanded(expand ? false : "expanded");
-          }}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </Navbar.Toggle>
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ms-auto" defaultActiveKey="#home">
-            <Nav.Item>
-              <Nav.Link as={Link} to="/" onClick={() => updateExpanded(false)}>
-                <AiOutlineHome style={{ marginBottom: "2px", marginRight: "4px" }} /> Home
-              </Nav.Link>
-            </Nav.Item>
+    <header className={`main_header ${scrolled ? "scrolled" : ""}`}>
+      <div className="portfolio-container">
+        <div className="navbar_flex_box">
+          <a href="#Home" className="main_logo_box">
+            <h1 className="main_logo_text">
+              NASIF<span className="main_logo_dot">.</span>
+            </h1>
+          </a>
 
-            <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/about"
-                onClick={() => updateExpanded(false)}
-              >
-                <AiOutlineUser style={{ marginBottom: "2px", marginRight: "4px" }} /> About
-              </Nav.Link>
-            </Nav.Item>
+          <nav className="navigation_wrap">
+            <div className="navigation_link_wrap">
+              <a href="#Home" className="nav_link">Home</a>
+              <a href="#about_sect" className="nav_link">About</a>
+              <a href="#skills_sect" className="nav_link">Skills</a>
+              <a href="#certifications_sect" className="nav_link">Certifications</a>
+              <a href="#Section-Home-Services" className="nav_link">Services</a>
+              <a href="#project_sect" className="nav_link">Portfolio</a>
+              <a href="#journey_sect" className="nav_link">Experience</a>
+              <a href="#education_sect" className="nav_link">Education</a>
+              <a href="#awards_sect" className="nav_link">Activities</a>
+              <a href="#contact_sect" className="nav_link">Contact</a>
+            </div>
 
-            <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/experience"
-                onClick={() => updateExpanded(false)}
-              >
-                <FaBriefcase style={{ marginBottom: "2px", marginRight: "4px" }} /> Experience
-              </Nav.Link>
-            </Nav.Item>
+            <div className="navigation_button_box">
+              <a href="#contact_sect" className="portfolio-btn">
+                <span>Let’s Talk</span>
+                <ArrowIcon />
+              </a>
+            </div>
+          </nav>
 
-            <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/education"
-                onClick={() => updateExpanded(false)}
-              >
-                <FaGraduationCap style={{ marginBottom: "2px", marginRight: "4px" }} /> Education
-              </Nav.Link>
-            </Nav.Item>
+          <button
+            className="menu_toggle_btn"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <HiX /> : <HiMenu />}
+          </button>
+        </div>
+      </div>
 
-            <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/project"
-                onClick={() => updateExpanded(false)}
-              >
-                <AiOutlineFundProjectionScreen
-                  style={{ marginBottom: "2px", marginRight: "4px" }}
-                />{" "}
-                Projects
-              </Nav.Link>
-            </Nav.Item>
-
-            <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/feedback"
-                onClick={() => updateExpanded(false)}
-              >
-                <FaComments style={{ marginBottom: "2px", marginRight: "4px" }} /> Feedback
-              </Nav.Link>
-            </Nav.Item>
-
-            <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/resume"
-                onClick={() => updateExpanded(false)}
-              >
-                <CgFileDocument style={{ marginBottom: "2px", marginRight: "4px" }} /> Resume
-              </Nav.Link>
-            </Nav.Item>
-
-            <Nav.Item className="fork-btn">
-              <Button
-                href="https://github.com/Nasifkabir/NasifKabir_Portfolio.git"
-                target="_blank"
-                className="fork-btn-inner"
-              >
-                <CgGitFork style={{ fontSize: "1.1em" }} />{" "}
-                <AiFillStar style={{ fontSize: "1em" }} />
-              </Button>
-            </Nav.Item>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+      {/* Mobile Drawer */}
+      <div className={`mobile_menu_drawer ${mobileOpen ? "open" : ""}`}>
+        <a href="#Home" className="nav_link" onClick={closeMobile}>Home</a>
+        <a href="#about_sect" className="nav_link" onClick={closeMobile}>About</a>
+        <a href="#skills_sect" className="nav_link" onClick={closeMobile}>Skills</a>
+        <a href="#certifications_sect" className="nav_link" onClick={closeMobile}>Certifications</a>
+        <a href="#Section-Home-Services" className="nav_link" onClick={closeMobile}>Services</a>
+        <a href="#project_sect" className="nav_link" onClick={closeMobile}>Portfolio</a>
+        <a href="#journey_sect" className="nav_link" onClick={closeMobile}>Experience</a>
+        <a href="#education_sect" className="nav_link" onClick={closeMobile}>Education</a>
+        <a href="#awards_sect" className="nav_link" onClick={closeMobile}>Activities</a>
+        <a href="#contact_sect" className="nav_link" onClick={closeMobile}>Contact</a>
+        <a href="#contact_sect" className="portfolio-btn" onClick={closeMobile} style={{ marginTop: "10px" }}>
+          <span>Let’s Talk</span>
+          <ArrowIcon />
+        </a>
+      </div>
+    </header>
   );
 }
 
-export default NavBar;
+export default Navbar;
