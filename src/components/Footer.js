@@ -15,21 +15,8 @@ function Footer() {
               NASIF<span style={{ color: "var(--color-primary)" }}>.</span>
             </h3>
             <p className="simple-footer-role">
-              Lead Technical Operations Engineer & Web Developer
+              Lead Technical Operations Engineer
             </p>
-          </div>
-
-          <div className="simple-footer-nav">
-            <a href="#Home">Home</a>
-            <a href="#about_sect">About</a>
-            <a href="#skills_sect">Skills</a>
-            <a href="#certifications_sect">Certifications</a>
-            <a href="#Section-Home-Services">Services</a>
-            <a href="#project_sect">Projects</a>
-            <a href="#journey_sect">Experience</a>
-            <a href="#education_sect">Education</a>
-            <a href="#awards_sect">Activities</a>
-            <a href="#contact_sect">Contact</a>
           </div>
 
           <div className="simple-footer-socials">
@@ -64,8 +51,7 @@ function Footer() {
         <div className="simple-footer-divider"></div>
 
         <div className="simple-footer-bottom">
-          <p>© {currentYear} Nasif Kabir. All rights reserved.</p>
-          <p>Built with React & Modern Web Standards</p>
+          <p>Engineered & Designed by Nasif Kabir © {currentYear} All rights reserved.</p>
         </div>
       </div>
     </footer>

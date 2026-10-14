@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ArrowIcon } from "./Icons";
-import { FiPhone, FiMail, FiMapPin } from "react-icons/fi";
+import { FiPhone, FiMail, FiMapPin, FiCheckCircle, FiAlertCircle, FiLoader } from "react-icons/fi";
 
 function Contact() {
   const [formState, setFormState] = useState({
@@ -10,17 +10,76 @@ function Contact() {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formState.name && formState.email && formState.message) {
-      setSubmitted(true);
+    setIsSubmitting(true);
+    setErrorMessage("");
+
+    const accessKey =
+      process.env.REACT_APP_WEB3FORMS_ACCESS_KEY || "";
+
+    if (!accessKey) {
+      setErrorMessage(
+        "Please provide your free Web3Forms Access Key in .env (REACT_APP_WEB3FORMS_ACCESS_KEY) to activate direct Gmail dispatch."
+      );
+      setIsSubmitting(false);
+      return;
     }
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formState.name,
+          email: formState.email,
+          phone: formState.phone || "Not provided",
+          subject: formState.subject || "New Inquiry from Portfolio",
+          message: formState.message,
+          from_name: `${formState.name} (Portfolio Inquiry)`,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMessage(
+          result.message || "Failed to send message. Please verify your access key or email directly."
+        );
+      }
+    } catch (err) {
+      setErrorMessage(
+        "Network error: Unable to deliver email right now. Please email directly at nasifkabir37@gmail.com."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleReset = () => {
+    setFormState({
+      name: "",
+      phone: "",
+      subject: "",
+      email: "",
+      message: "",
+    });
+    setSubmitted(false);
+    setErrorMessage("");
   };
 
   return (
@@ -34,16 +93,35 @@ function Contact() {
           <div className="contact_form_block">
             {submitted ? (
               <div className="contact_success_alert">
-                <h4 style={{ color: "var(--color-primary)", marginBottom: "8px" }}>
-                  Thank you, {formState.name}!
-                </h4>
-                <p style={{ margin: 0 }}>
-                  Your inquiry regarding "{formState.subject || "Collaboration"}" has been received.
+                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "10px" }}>
+                  <FiCheckCircle style={{ color: "var(--color-primary)", fontSize: "24px", flexShrink: 0 }} />
+                  <h4 style={{ color: "var(--color-primary)", margin: 0, fontSize: "22px" }}>
+                    Thank you, {formState.name}!
+                  </h4>
+                </div>
+                <p style={{ margin: "0 0 16px 0", color: "var(--color-neutral-light)" }}>
+                  Your message regarding "{formState.subject || "Collaboration"}" has been sent directly to{" "}
+                  <strong style={{ color: "var(--color-white)" }}>nasifkabir37@gmail.com</strong>.
                   I will get back to you shortly!
                 </p>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="portfolio-btn btn-outline"
+                  style={{ padding: "8px 20px", fontSize: "14px" }}
+                >
+                  Send Another Message
+                </button>
               </div>
             ) : (
               <form className="contact_form" onSubmit={handleSubmit}>
+                {errorMessage && (
+                  <div className="contact_error_alert">
+                    <FiAlertCircle style={{ marginRight: "8px", verticalAlign: "middle" }} />
+                    {errorMessage}
+                  </div>
+                )}
+
                 <div className="contact_form_row">
                   <div className="contact_form_group">
                     <label htmlFor="Name" className="contact_form_label">Your Name</label>
@@ -116,9 +194,22 @@ function Contact() {
                   ></textarea>
                 </div>
 
-                <button type="submit" className="portfolio-btn" style={{ width: "100%" }}>
-                  <span>Submit Now</span>
-                  <ArrowIcon />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="portfolio-btn"
+                  style={{
+                    width: "100%",
+                    opacity: isSubmitting ? 0.75 : 1,
+                    cursor: isSubmitting ? "not-allowed" : "pointer",
+                  }}
+                >
+                  <span>{isSubmitting ? "Sending Message..." : "Submit Now"}</span>
+                  {isSubmitting ? (
+                    <FiLoader className="spin-icon" style={{ fontSize: "18px" }} />
+                  ) : (
+                    <ArrowIcon />
+                  )}
                 </button>
               </form>
             )}
